@@ -1,0 +1,336 @@
+
+<html>
+<head>
+	<title>Full Stack Code Simulator</title>
+<link href="global.css" rel="stylesheet">
+<script src="editor.js" type="text/javascript"></script>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" integrity="sha512-GZ1RIgZaSc8rnco/8CXfRdCpDxRCphenIiZ2ztLy3XQfCbQUSCuk8IudvNHxkRA3oUg6q0qejgN/qqyG1duv5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div id="name">
+	<h1>Full Stack Code Simulator</h1>	
+  </div>
+  <div id="names">
+	<h3 id="nhtml">HTML</h3> 
+	<h3 id="ncss">CSS</h3> 
+	<h3 id="njs">JS with Angular</h3> 
+	<h3 id="nrjs">React JS</h3> 
+  </div>
+<div id='container'>
+  <div id="html">
+  </div>
+  <div id="css">
+  </div>
+  <div id="js">
+  </div>
+  
+  <div id="rjs">
+  </div>  
+</div>
+<div id="names">
+</div>
+<br>
+<div>
+		<button class="button" onclick="compile();">Run</button>
+		<button class="button" onclick="clearAll();">Clear Input</button>
+</div>
+<h2> <b>Output</b> </h2>
+<iframe id ="iframe" class="panel"></iframe>
+
+</body>
+</html>
+<style>
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+h1{
+font-family: 'Courier New', consolas ;
+  text-align: center;
+  margin: 0;
+  font-weight: 800;
+  color:black;
+}
+h3{
+  font-family: consolas ;
+  text-align: center;
+  margin: 0;
+  color:white;
+}
+
+
+.clearLink {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+  
+
+.button:hover {
+  background: #f0f0f0;
+  color : black;
+}
+
+.header {
+  padding: 20px;
+  text-align: left-side;
+  background: #000000;
+  color: black;
+  font-size: 30px;
+}
+.clearLink:hover {
+  background: #f0f0f0;
+  color : black;
+}
+
+#html,#js,#css,#rjs{
+    height: 300px;
+    width:25%;
+    display:inline-block;
+}
+#nhtml,#njs,#ncss,#nrjs{
+    height: 20px;
+    width:23%;
+    display:inline-block;
+
+}
+#container {
+	height:300px;
+	width:100%;
+  white-space : nowrap; 
+  overflow : hidden;
+  position:relative;
+}
+#names {
+	height:25px;
+	width:100%;
+  overflow : hidden;
+  position:relative;
+	background:#8c8c8c;
+}
+#name {
+	height:50px;
+	width:100%;
+  overflow : hidden;
+  position:relative;
+}
+iframe {
+  width: 100%;
+  overflow: scroll;
+    height: 100%;
+    border: 1px solid black;
+  margin: 15px 0;
+   border: 2px solid #0f0f0f;
+  border-radius: 15px;
+  min-height: 600px;
+  margin: 15px 0 0 0;
+}
+
+
+
+/* disable tag matching */
+.ace_editor .ace_marker-layer .ace_bracket { display: none }
+
+</style>
+<script>
+	
+var c=1;
+
+function compile() {
+
+	if(c==1)
+	{
+	var frame = document.getElementById("iframe");
+    frame.parentNode.removeChild(frame);
+	}
+	
+    var newIframe = document.createElement('iframe');
+	newIframe.setAttribute('id','iframe');
+	newIframe.setAttribute('class','panel');
+	newIframe.src = 'about:blank'; 
+	document.body.appendChild(newIframe);
+	newIframe.contentWindow.document.open('text/html', 'replace');
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/cjs/react-jsx-runtime.production.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/cjs/react-jsx-runtime.profiling.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.0.0-alpha-464f27572-20210713/cjs/react-dom-server-legacy.browser.production.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/react-router/5.2.0/react-router.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/7.0.0/rzslider.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("<scr"+"ipt src='https://cdnjs.cloudflare.com/ajax/libs/angularjs-nvd3-directives/0.0.7/angularjs-nvd3-directives.min.js'></scr"+"ipt>");
+	newIframe.contentWindow.document.write("\n<scr"+"ipt src='https://unpkg.com/react@16/umd/react.production.min.js'>"+"</scr"+"ipt>"+"\n<scr"+"ipt src='https://unpkg.com/react-dom@16/umd/react-dom.production.min.js'>"+"</scr"+"ipt>"+"\n<scr"+"ipt src='https://unpkg.com/babel-standalone@6.15.0/babel.min.js'>"+"</scr"+"ipt>");
+
+	newIframe.contentWindow.document.write(html.getValue()+"<style>"+css.getValue()+"</style>"+"<scr"+"ipt>"+js.getValue()+"</scr"+"ipt>"+"<scr"+"ipt type='text/babel'>"+rjs.getValue()+"</scr"+"ipt>");
+	newIframe.contentWindow.document.close();
+	c = 1;
+  }
+  
+function setupEditorhtml()
+{
+  window.html = ace.edit("html");
+  html.setTheme("ace/theme/iplastic");
+  html.getSession().setMode("ace/mode/html");
+  html.focus();
+  
+  html.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+html.setValue("<!DOCTYPE html>\n<html>\n<head>\n</head>\n<body>\n\n\n\n</body>\n</html>\n",1);  
+html.setShowPrintMargin(false);
+  html.setBehavioursEnabled(false);
+}
+function setupEditorcss()
+{
+  window.css = ace.edit("css");
+  css.setTheme("ace/theme/iplastic");
+  css.getSession().setMode("ace/mode/css");
+
+  css.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+  	css.setValue("/* CSS Goes Here*/\n",1);
+
+
+  css.setShowPrintMargin(false);
+  css.setBehavioursEnabled(false);
+}
+function setupEditorjs()
+{
+  window.js = ace.edit("js");
+  js.setTheme("ace/theme/iplastic");
+  js.getSession().setMode("ace/mode/javascript");
+ 
+  js.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+  	js.setValue("/* Java Script and Angular JS Goes Here*/\n",1);
+
+  js.setShowPrintMargin(false);
+  js.setBehavioursEnabled(false);
+}
+function setupEditorrjs()
+{
+  window.rjs = ace.edit("rjs");
+  rjs.setTheme("ace/theme/iplastic");
+  rjs.getSession().setMode("ace/mode/javascript");
+
+  rjs.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+  	rjs.setValue("/*React JS Goes Here*/\n",1);
+
+
+  rjs.setShowPrintMargin(false);
+  rjs.setBehavioursEnabled(false);
+}
+
+setupEditorhtml();
+setupEditorcss();
+setupEditorjs();
+setupEditorrjs();
+
+function clearAll()
+{
+  window.html = ace.edit("html");
+  html.setTheme("ace/theme/iplastic");
+  html.getSession().setMode("ace/mode/html");
+  html.focus();
+  
+  html.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+html.setValue("<!DOCTYPE html>\n<html>\n<head>\n</head>\n<body>\n\n\n\n</body>\n</html>\n",1);  
+  html.setShowPrintMargin(false);
+  html.setBehavioursEnabled(false);
+  
+  window.css = ace.edit("css");
+  css.setTheme("ace/theme/iplastic");
+  css.getSession().setMode("ace/mode/css");
+
+  css.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+  	css.setValue("/* CSS Goes Here*/\n",1);
+
+
+  css.setShowPrintMargin(false);
+  css.setBehavioursEnabled(false);
+  
+  
+  window.js = ace.edit("js");
+  js.setTheme("ace/theme/iplastic");
+  js.getSession().setMode("ace/mode/javascript");
+ 
+  js.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+  	js.setValue("/* Java Script and Angular JS Goes Here*/\n",1);
+
+  js.setShowPrintMargin(false);
+  js.setBehavioursEnabled(false);
+  
+  window.rjs = ace.edit("rjs");
+  rjs.setTheme("ace/theme/iplastic");
+  rjs.getSession().setMode("ace/mode/javascript");
+
+  rjs.setOptions({
+    fontSize: "12pt",
+    showLineNumbers:false,
+    showGutter: false,
+    vScrollBarAlwaysVisible:true,
+    enableBasicAutocompletion: false, enableLiveAutocompletion: false
+  });
+  	rjs.setValue("/*React JS Goes Here*/\n",1);
+
+
+  rjs.setShowPrintMargin(false);
+  rjs.setBehavioursEnabled(false);
+}
+
+
+
+  
+</script>
+</html>
